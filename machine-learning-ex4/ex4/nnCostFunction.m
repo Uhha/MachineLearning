@@ -99,6 +99,9 @@ J = (1/m) * sum(sum((-y_transf' * log(hox) - (1 - y_transf)' * log(1 - hox) ) .*
 %end
 % -------------------------------------------------------------
 
+a1 = [ones(size(a1,1), 1), a1];
+a2 = [ones(size(a2,1), 1), a2];
+
 d3 = hox - y_transf;
 Th2 = Theta2(:, 2:end);
 d2x = Th2' * d3';
@@ -110,8 +113,9 @@ D2 = d3' * a2;
 D1 = d2 * a1;
 
 
-Theta1_grad = [ones(size(D1,1), 1), D1];
-Theta2_grad = [ones(size(D2,1), 1), D2];
+
+Theta1_grad = D1 / m;
+Theta2_grad = D2 / m;
 
 
 % =========================================================================
