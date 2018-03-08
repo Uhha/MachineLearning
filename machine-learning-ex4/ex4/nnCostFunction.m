@@ -114,9 +114,16 @@ D1 = d2 * a1;
 
 
 
-Theta1_grad = D1 / m;
-Theta2_grad = D2 / m;
 
+
+offset1 = (lambda/m) * Theta1_grad(:, 2:end);
+offset1 = [zeros(size(offset1, 1), 1), offset1];
+
+offset2 = (lambda/m) * Theta2_grad(:, 2:end);
+offset2 = [zeros(size(offset2, 1), 1), offset2];
+
+Theta1_grad = (D1 / m) + offset1;
+Theta2_grad = (D2 / m) + offset2;
 
 % =========================================================================
 

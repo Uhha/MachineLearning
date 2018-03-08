@@ -36,6 +36,7 @@ numgrad = computeNumericalGradient(costFunc, nn_params);
 
 % Visually examine the two gradient computations.  The two columns
 % you get should be very similar. 
+format short g
 disp([numgrad grad]);
 fprintf(['The above two columns you get should be very similar.\n' ...
          '(Left-Your Numerical Gradient, Right-Analytical Gradient)\n\n']);
@@ -47,6 +48,6 @@ diff = norm(numgrad-grad)/norm(numgrad+grad);
 
 fprintf(['If your backpropagation implementation is correct, then \n' ...
          'the relative difference will be small (less than 1e-9). \n' ...
-         '\nRelative Difference: %g\n'], diff);
+         '\nRelative Difference: %f\n'], diff);
 
 end
