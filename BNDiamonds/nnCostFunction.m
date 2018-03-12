@@ -72,10 +72,7 @@ hox = sigmoid(z3');
 
 
   
-y_transf = y * ones(1, num_labels);
-for i=1:num_labels
-  y_transf(:,i) = y_transf(:,i) == i;
-end
+
  
  
 %working one with loop 
@@ -84,9 +81,7 @@ end
 %end
 
 
-J = (1/m) * sum(sum((-y_transf' * log(hox) - (1 - y_transf)' * log(1 - hox) ) .* eye(num_labels)))...
-  + (lambda / (2*m)) * (sum(sum((Theta1(:,2:end)).^2)) + sum(sum((Theta2(:,2:end)).^2)));
-
+J = (1/m) * sum(sum((-y' * hox) .* eye(num_labels)));
 
 %A = [1 2; 3 4; 5 6];
 %B = [7 8; 9 10; 11 12];
@@ -102,7 +97,7 @@ J = (1/m) * sum(sum((-y_transf' * log(hox) - (1 - y_transf)' * log(1 - hox) ) .*
 a1 = [ones(size(a1,1), 1), a1];
 a2 = [ones(size(a2,1), 1), a2];
 
-d3 = hox - y_transf;
+d3 = hox - y;
 Th2 = Theta2(:, 2:end);
 d2x = Th2' * d3';
 d2 = d2x.* sigmoidGradient(z2);
@@ -122,8 +117,8 @@ offset1 = [zeros(size(offset1, 1), 1), offset1];
 offset2 = (lambda/m) * Theta2(:, 2:end);
 offset2 = [zeros(size(offset2, 1), 1), offset2];
 
-Theta1_grad = (D1 / m) + offset1;
-Theta2_grad = (D2 / m) + offset2;
+Theta1_grad = (D1 / m);% + offset1;
+Theta2_grad = (D2 / m);% + offset2;
 
 % =========================================================================
 
