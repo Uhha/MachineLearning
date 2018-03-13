@@ -54,7 +54,7 @@ error_val   = zeros(m, 1);
 % ---------------------- Sample Solution ----------------------
 
 
-
+theta = trainLinearReg(X, y, lambda)
 
 
 
