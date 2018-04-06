@@ -23,6 +23,23 @@ idx = zeros(size(X,1), 1);
 
 
 
+for i = 1 : size(idx, 1)
+  
+  smallest = norm(X(i,:) - centroids(1,:));
+  index = 1;
+  for j = 2 : K
+      dist = norm(X(i,:) - centroids(j,:));
+      if (dist < smallest)
+        smallest = dist;
+        index = j;
+      endif
+  end
+  
+  idx(i) = index;
+  
+  
+end
+
 
 
 
